@@ -76,7 +76,7 @@ bool Tic_tac::check_column_win()
     {
         return true;
     }
-    else if ((pegs[2] == "X" && pegs[5] == "X" && pegs[8] == "X")||(pegs[3] == "O" && pegs[5] == "O" && pegs[8] == "O"))
+    else if ((pegs[2] == "X" && pegs[5] == "X" && pegs[8] == "X")||(pegs[2] == "O" && pegs[5] == "O" && pegs[8] == "O"))
     {
         return true;
     }
@@ -93,7 +93,7 @@ bool Tic_tac::check_row_win()
     {
         return true;
     }
-    else if ((pegs[6] == "X" && pegs[7] == "X" && pegs[8] == "X")||(pegs[6] == "O" && pegs[6] == "O" && pegs[8] == "O"))
+    else if ((pegs[6] == "X" && pegs[7] == "X" && pegs[8] == "X")||(pegs[6] == "O" && pegs[7] == "O" && pegs[8] == "O"))
     {
         return true;
     }
