@@ -1,15 +1,19 @@
 #include "tic_tac_toe.h"
+#include "tic_tac_toe_manager.h"
 #include <cstring>
 using std::cout; using std::cin; using std::string;using namespace std;
 int main() 
 {
-	string player;
-	Tic_tac game;
-	int pos;
-	int choice;
+	
+	Tic_tac_manager manager;
+	int x_wins, o_wins, ties;
 	bool vars = true;
-	char varification;
 	do{
+		Tic_tac game;
+		string player;
+		int pos;
+		char varification;
+		int choice;
 		cout<<"1- Play Game\n";
 		cout<<"2- Exit\n";
 		cin>>choice;
@@ -30,10 +34,8 @@ int main()
 				game.start_game(player);
 				while(game.game_over() != true)
 				{
-					cout<<"Enter position from 1 to 9: ";
-					cin>> pos;
-					game.mark_board(pos);
-					game.display_board();
+					cin>>game;
+					cout<<game;
 				}
 				if(game.get_winner() == "X")
 				{
@@ -47,6 +49,11 @@ int main()
 				{
 					cout<< "Tie\n";
 				}
+				manager.save_game(game);
+				manager.get_winner_total(x_wins,o_wins,ties);
+				cout<<"\nX wins: "<<x_wins<<"\n";
+				cout<<"O wins: "<<o_wins<<"\n";
+				cout<<"Ties: "<<ties<<"\n\n";
 			}
 			else
 			{
@@ -71,5 +78,10 @@ int main()
 		}
 		
 	}while(vars);
+	cout<<"\n"<<manager;
+	cout<<"X wins: "<<x_wins<<"\n";
+	cout<<"O wins: "<<o_wins<<"\n";
+	cout<<"Ties: "<<ties<<"\n";
+
 	return 0;
 }

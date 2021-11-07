@@ -1,7 +1,7 @@
 //cpp
 #include "tic_tac_toe.h"
 #include <algorithm>
-using std::cout;
+using std::cout; using std::cin;
 bool Tic_tac::game_over()
 {
     if(check_column_win() || check_row_win() || check_diagonal_win())
@@ -36,22 +36,6 @@ void Tic_tac::mark_board(int position)
 string Tic_tac::get_player() const
 {
     return player;
-}
-
-void Tic_tac::display_board()
-{
-    int count = 0;
-    for(string i : pegs)
-    {
-        if (count == 2)
-        {
-            cout << i << "\n";
-            count = 0;
-        }else{
-            cout<< i << "|";
-            count ++;
-        }
-    }
 }
 
 void Tic_tac::set_next_player()
@@ -145,4 +129,29 @@ void Tic_tac::set_winner()
     {
         winner = "X";
     }
+}
+std::istream& operator>>(std::istream& in, Tic_tac& game)
+{
+    int pos;
+    cout<<"Enter position from 1 to 9: ";
+	cin>> pos;
+    game.mark_board(pos);
+    return in;
+}
+
+std::ostream& operator<<(std::ostream& out, const Tic_tac& game)
+{
+    int count = 0;
+    for(string i : game.pegs)
+    {
+        if (count == 2)
+        {
+            cout << i << "\n";
+            count = 0;
+        }else{
+            cout<< i << "|";
+            count ++;
+        }
+    }
+    return out;
 }
