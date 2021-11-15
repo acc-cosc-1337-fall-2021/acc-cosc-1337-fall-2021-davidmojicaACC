@@ -52,48 +52,16 @@ void Tic_tac::set_next_player()
 
 bool Tic_tac::check_column_win()
 {
-    if((pegs[0] == "X" && pegs[3] == "X" && pegs[6] == "X")||(pegs[0] == "O" && pegs[3] == "O" && pegs[6] == "O"))
-    {
-        return true;
-    }
-    else if((pegs[1] == "X" && pegs[4] == "X" && pegs[7] == "X")||(pegs[1] == "O" && pegs[4] == "O" && pegs[7] == "O"))
-    {
-        return true;
-    }
-    else if ((pegs[2] == "X" && pegs[5] == "X" && pegs[8] == "X")||(pegs[2] == "O" && pegs[5] == "O" && pegs[8] == "O"))
-    {
-        return true;
-    }
     return false;
 }
 
 bool Tic_tac::check_row_win()
 {
-    if((pegs[0] == "X" && pegs[1] == "X" && pegs[2] == "X")||(pegs[0] == "O" && pegs[1] == "O" && pegs[2] == "O"))
-    {
-        return true;
-    }
-    else if((pegs[3] == "X" && pegs[4] == "X" && pegs[5] == "X")||(pegs[3] == "O" && pegs[4] == "O" && pegs[5] == "O"))
-    {
-        return true;
-    }
-    else if ((pegs[6] == "X" && pegs[7] == "X" && pegs[8] == "X")||(pegs[6] == "O" && pegs[7] == "O" && pegs[8] == "O"))
-    {
-        return true;
-    }
     return false;
 }
 
 bool Tic_tac::check_diagonal_win()
 {
-    if((pegs[0] == "X" && pegs[4] == "X" && pegs[8] == "X")||(pegs[0] == "O" && pegs[4] == "O" && pegs[8] == "O"))
-    {
-        return true;
-    }
-    else if((pegs[2] == "X" && pegs[4] == "X" && pegs[6] == "X")||(pegs[2] == "O" && pegs[4] == "O" && pegs[6] == "O"))
-    {
-        return true;
-    }
     return false;
 }
 
@@ -111,7 +79,10 @@ bool Tic_tac::check_board_full()
 
 void Tic_tac::clear_board()
 {
-    pegs = {" ", " ", " ", " ", " ", " ", " ", " ", " "};
+    for(auto i : pegs)
+    {
+        i = " ";
+    }
 }
 
 string Tic_tac::get_winner()
@@ -133,7 +104,7 @@ void Tic_tac::set_winner()
 std::istream& operator>>(std::istream& in, Tic_tac& game)
 {
     int pos;
-    cout<<"Enter position from 1 to 9: ";
+    cout<<"Enter position on board: ";
 	cin>> pos;
     game.mark_board(pos);
     return in;
@@ -142,15 +113,31 @@ std::istream& operator>>(std::istream& in, Tic_tac& game)
 std::ostream& operator<<(std::ostream& out, const Tic_tac& game)
 {
     int count = 0;
-    for(string i : game.pegs)
+    if (game.pegs.size() == 9)
     {
-        if (count == 2)
+        for(string i : game.pegs)
         {
-            cout << i << "\n";
-            count = 0;
-        }else{
-            cout<< i << "|";
-            count ++;
+            if (count == 2)
+            {
+                cout << i << "\n";
+                count = 0;
+            }else{
+                cout<< i << "|";
+                count ++;
+            }
+        }
+    }else if (game.pegs.size() == 16)
+    {
+        for(string i : game.pegs)
+        {
+            if (count == 3)
+            {
+                cout << i << "\n";
+                count = 0;
+            }else{
+                cout<< i << "|";
+                count ++;
+            }
         }
     }
     return out;

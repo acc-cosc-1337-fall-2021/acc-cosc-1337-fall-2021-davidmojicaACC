@@ -1,6 +1,7 @@
 //h
 #include <iostream>
 #include<vector>
+#include<memory>
 using std::string;using std::vector;
 
 #ifndef TIC_TAC_TOE_H
@@ -9,6 +10,7 @@ using std::string;using std::vector;
 class Tic_tac
 {
 public:
+    Tic_tac(int SIZE):pegs(SIZE*SIZE," "){}
     void start_game(string first_player);
     void mark_board(int position);
     bool game_over();
@@ -22,13 +24,14 @@ private:
     void set_winner();
     void clear_board();
     bool check_board_full();
-    bool check_column_win();
-    bool check_row_win();
-    bool check_diagonal_win();
-    
+
     string player;
     string winner;
-    vector<string> pegs {" ", " ", " ", " ", " ", " ", " ", " ", " "};
+protected:
+    virtual bool check_column_win();
+    virtual bool check_row_win();
+    virtual bool check_diagonal_win();
+    vector<string> pegs;
 };
 
 #endif
