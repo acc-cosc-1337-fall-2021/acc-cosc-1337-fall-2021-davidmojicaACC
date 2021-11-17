@@ -354,27 +354,27 @@ TEST_CASE("Test win by forth row 4")
 	REQUIRE(game ->get_winner() == "O");
 }
 
-// TEST_CASE("Test win diagonally from top left 4")
-// {
-// 	unique_ptr<Tic_tac> game = make_unique<Tic_tac_4> ();
-// 	game ->start_game("X");
-// 	game ->mark_board(1);
-// 	REQUIRE(game ->game_over() == false);
-// 	game ->mark_board(5);
-// 	REQUIRE(game ->game_over() == false);
-// 	game ->mark_board(6);
-// 	REQUIRE(game ->game_over() == false);
-// 	game ->mark_board(7);
-// 	REQUIRE(game ->game_over() == false);
-// 	game ->mark_board(11);
-// 	REQUIRE(game ->game_over() == false);
-// 	game ->mark_board(1);
-// 	REQUIRE(game ->game_over() == false);
-// 	game ->mark_board(16);
-// 	REQUIRE(game->game_over() == true);
-// 	REQUIRE(game ->get_winner() == "X");
+TEST_CASE("Test win diagonally from top left 4")
+{
+	unique_ptr<Tic_tac> game = make_unique<Tic_tac_4> ();
+	game ->start_game("X");
+	game ->mark_board(1);
+	REQUIRE(game ->game_over() == false);
+	game ->mark_board(5);
+	REQUIRE(game ->game_over() == false);
+	game ->mark_board(6);
+	REQUIRE(game ->game_over() == false);
+	game ->mark_board(7);
+	REQUIRE(game ->game_over() == false);
+	game ->mark_board(11);
+	REQUIRE(game ->game_over() == false);
+	game ->mark_board(3);
+	REQUIRE(game ->game_over() == false);
+	game ->mark_board(16);
+	REQUIRE(game ->game_over() == true);
+	REQUIRE(game ->get_winner() == "X");
 
-// }
+}
 
 TEST_CASE("Test win diagonally from bottom left 4")
 {
