@@ -9,7 +9,8 @@ using std::cout; using std::cin; using std::string;using std::make_unique; using
 
 int main() 
 {
-	Tic_tac_manager manager;
+	tic_tac_data data;
+	Tic_tac_manager manager(data);
 	int x_wins, o_wins, ties;
 	bool vars = true;
 	do{

@@ -1,7 +1,14 @@
 #include "tic_tac_toe_manager.h"
-#include "tic_tac_toe.h"
 //cpp
-
+Tic_tac_manager::Tic_tac_manager(tic_tac_data d): data(d)
+{
+    games = data.get_games();
+    for(auto&game : games)
+    {
+        update_winner_count(game->get_winner());
+    }
+    
+}
 void Tic_tac_manager::save_game(unique_ptr<Tic_tac> &b)
 {
     update_winner_count(b -> get_winner());
@@ -35,4 +42,8 @@ std::ostream& operator<<(std::ostream& out, const Tic_tac_manager& manager)
         cout<<*game<<"\n";
     }
     return out;
+}
+Tic_tac_manager::~Tic_tac_manager()
+{
+    data.save_games(games);
 }
